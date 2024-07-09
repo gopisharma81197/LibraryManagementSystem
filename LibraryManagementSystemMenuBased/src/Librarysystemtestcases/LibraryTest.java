@@ -19,19 +19,19 @@ public class LibraryTest {
 	private Book book4;
 
 	@Before
-	public void setUp() { 
-		library = new Library(); 
+	public void setUp() {
+		library = new Library();
 		book4 = new Book();
 		book1 = new Book("Title1", "Author1", "ISBN1", "Genre1", 2021, "Department1", true);
 		book2 = new Book("Title2", "Author2", "ISBN2", "Genre2", 2022, "Department2", false);
 		book3 = new Book("Title3", "Author3", "ISBN3", "Genre3", 2023, "Department3", true);
 		book4.setTitle("Title4");
-		book4.setAuthor("Author4"); 
-		book4.setiSBN("ISBN4"); 
+		book4.setAuthor("Author4");
+		book4.setiSBN("ISBN4");
 		book4.setGenre("Genre4");
 		book4.setPublicationYear(2024);
-		book4.setDepartment("Department4"); 
-		book4.setAvailability(false); 
+		book4.setDepartment("Department4");
+		book4.setAvailability(false);
 	}
 
 	@Test
@@ -112,21 +112,25 @@ public class LibraryTest {
 		assertEquals(1, books.size());
 		assertEquals(book1, books.get(0));
 	}
-	
+
 	@Test
 	public void testListOfBooks() {
 		library.addBook(book1);
 		library.addBook(book2);
 		List<Book> books = library.getListOfBooks();
+
+		/* verify both can be fetched successfully with list of books */
 		assertEquals(2, books.size());
 	}
-	
+
 	@Test
 	public void testsetListOfBooks() {
 		List<Book> book = new ArrayList<Book>();
 		book.add(book1);
 		book.add(book2);
 		library.setListOfBooks(book);
+
+		/* verify both book are added successfully */
 		assertEquals(2, book.size());
 	}
 }
