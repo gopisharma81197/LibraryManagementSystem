@@ -17,7 +17,7 @@ public class LibraryTest {
 	private Book book4;
 
 	@Before
-	public void setUp() {
+	public void setUp() { 
 		library = new Library(); 
 		book4 = new Book();
 		book1 = new Book("Title1", "Author1", "ISBN1", "Genre1", 2021, "Department1", true);
