@@ -3,6 +3,8 @@ package Librarysystemtestcases;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
@@ -109,5 +111,22 @@ public class LibraryTest {
 		List<Book> books = library.listAvailableBooks();
 		assertEquals(1, books.size());
 		assertEquals(book1, books.get(0));
+	}
+	
+	@Test
+	public void testListOfBooks() {
+		library.addBook(book1);
+		library.addBook(book2);
+		List<Book> books = library.getListOfBooks();
+		assertEquals(2, books.size());
+	}
+	
+	@Test
+	public void testsetListOfBooks() {
+		List<Book> book = new ArrayList<Book>();
+		book.add(book1);
+		book.add(book2);
+		library.setListOfBooks(book);
+		assertEquals(2, book.size());
 	}
 }
