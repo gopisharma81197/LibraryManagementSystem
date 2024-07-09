@@ -18,7 +18,7 @@ public class LibraryTest {
 
 	@Before
 	public void setUp() {
-		library = new Library();
+		library = new Library(); 
 		book4 = new Book();
 		book1 = new Book("Title1", "Author1", "ISBN1", "Genre1", 2021, "Department1", true);
 		book2 = new Book("Title2", "Author2", "ISBN2", "Genre2", 2022, "Department2", false);
