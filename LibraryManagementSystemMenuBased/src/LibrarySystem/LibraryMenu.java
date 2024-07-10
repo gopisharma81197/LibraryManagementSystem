@@ -80,6 +80,7 @@ public class LibraryMenu {
 
 	public static void addingBookProcess(Scanner in, Library library) {
 
+		/* Please Enter title */
 		String title = "";
 		while (true) {
 			System.out.print("Enter title: ");
