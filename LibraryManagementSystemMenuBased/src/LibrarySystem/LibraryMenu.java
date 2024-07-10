@@ -3,6 +3,8 @@ package LibrarySystem;
 import java.util.List;
 import java.util.Scanner;
 
+import Exception.InvalidPublicationYearException;
+
 public class LibraryMenu {
 
 	public static void main(String[] args) {
@@ -70,49 +72,96 @@ public class LibraryMenu {
 		System.out.print("Enter Number : ");
 	}
 
+	public static boolean valueToBePresent(String value) {
+		if (value.trim().length() > 0)
+			return true;
+		return false;
+	}
+
 	public static void addingBookProcess(Scanner in, Library library) {
 
-		System.out.print("Enter title: ");
-		String title = in.nextLine();
+		String title = "";
+		while (true) {
+			System.out.print("Enter title: ");
+			title = in.nextLine();
+			if (valueToBePresent(title)) {
+				break;
+			}
+			continue;
+		}
+
+		/* Please Enter Author */
 		String author = "";
 		while (true) {
 			System.out.print("Enter author: ");
 			author = in.nextLine();
-			if (author.matches("[a-zA-Z ]+")) {
+			if (valueToBePresent(author) && author.matches("[a-zA-Z ]+")) {
 				break;
 			} else {
 				System.out.print("Please enter only letters for the author.");
 			}
 		}
-		System.out.print("Enter ISBN: ");
-		String ISBN = in.nextLine();
 
-		System.out.print("Enter genre: ");
-		String genre = in.nextLine();
+		/* Please Enter ISBN */
+		String ISBN = "";
+		while (true) {
+			System.out.print("Enter ISBN: ");
+			ISBN = in.nextLine();
+			if (valueToBePresent(ISBN)) {
+				break;
+			}
+			continue;
+		}
+
+		/* Please Enter genre */
+		String genre = "";
+		while (true) {
+			System.out.print("Enter genre: ");
+			genre = in.nextLine();
+			if (valueToBePresent(genre)) {
+				break;
+			}
+			continue;
+		}
+
+		/* Please Enter Publication year */
 
 		String yearString = "";
 		int publicationYear = 0;
 		while (true) {
-			System.out.print("Enter publication year 4 digit(numeric only): ");
-			yearString = in.nextLine();
-			if (yearString.matches("\\d{4}")) {
-				publicationYear = Integer.parseInt(yearString);
-				break;
-			} else {
-				continue;
+			try {
+				System.out.print("Enter publication year 4 digit(numeric only): ");
+				yearString = in.nextLine();
+				if (yearString.matches("\\d{4}")) {
+					publicationYear = Integer.parseInt(yearString);
+					break;
+				} else {
+					throw new InvalidPublicationYearException();
+				}
+			} catch (InvalidPublicationYearException e) {
+				System.out.println(e.getMessage());
 			}
+
 		}
 
-		System.out.print("Enter department: ");
-		String department = in.nextLine();
+		/* Please Enter department */
+		String department = "";
+		while (true) {
+			System.out.print("Enter department: ");
+			department = in.nextLine();
+			if (valueToBePresent(department)) {
+				break;
+			}
+			continue;
+		}
 
-		
 		boolean availability = false;
 
 		while (true) {
 			System.out.print("Is the book available (true/false): ");
 			String availabilityInput = in.nextLine();
-			if (availabilityInput.equalsIgnoreCase("true") || availabilityInput.equalsIgnoreCase("false")) {
+			if ((valueToBePresent(availabilityInput))
+					&& (availabilityInput.equalsIgnoreCase("true") || availabilityInput.equalsIgnoreCase("false"))) {
 				availability = Boolean.parseBoolean(availabilityInput);
 				break;
 			} else {
